@@ -1,0 +1,103 @@
+<ServerManagerConfiguration>
+  <ProxyGroup name="filters">
+    <!-- ================================================================== -->
+    <SourceProxy name="EntryCluster" class="EntryCluster" label="EntryCluster">
+      <Documentation
+         long_help="Cluster the streamline by min or avg."
+         short_help="Cluster the streamline by min or avg.">
+      </Documentation>
+
+       <InputProperty
+        name="Input"
+        command="SetInputConnection">
+           <ProxyGroupDomain name="groups">
+             <Group name="sources"/>
+             <Group name="filters"/>
+           </ProxyGroupDomain>
+           <DataTypeDomain name="input_type">
+             <DataType value="vtkPolyData"/>
+           </DataTypeDomain>
+      </InputProperty> 
+       <!--
+Boolean property
+This property appears as a check box control. A boolean property uses the IntVectorProperty with an extra line (BooleanDomain...) indicating this should be a check box rather than a text field.
+ -->
+ 	<IntVectorProperty name="Cluster Type"
+										 command="SetClusterType"
+										 number_of_elements="1"
+										 default_values="1">
+			<EnumerationDomain name="enum">
+				<Entry value="1" text="MinHierarchical Cluster"/>
+				<Entry value="2" text="AvgHierarchical Cluster"/>
+				<Entry value="3" text="Spectral Cluster"/>
+				<Entry value="4" text="Kmeans Cluster"/>
+			</EnumerationDomain>
+	</IntVectorProperty>
+	  <IntVectorProperty name="BestClusterNum "
+  									command="SetBestClusterNum"
+                     number_of_elements="1"
+                     default_values="0">
+  </IntVectorProperty>
+  <IntVectorProperty name="Mesh Size "
+  									command="SetMeshSize"
+                     number_of_elements="3"
+                     default_values="40 40 40">
+  </IntVectorProperty>
+	<IntVectorProperty name="Cal Type"
+										 command="SetCalType"
+										 number_of_elements="1"
+										 default_values="1">
+			<EnumerationDomain name="enum">
+				<Entry value="1" text="Minimum Distance"/>
+				<Entry value="2" text="Avg Distance"/>
+			</EnumerationDomain>
+	</IntVectorProperty>
+  <IntVectorProperty name="NumOfLevel"
+                				command="SetNumOfLevel"
+                        number_of_elements="1"
+                        default_values="100">
+    <IntRangeDomain name="range" min="1" max="1000" />
+  </IntVectorProperty>
+    <IntVectorProperty name="ShowBestClusts"
+                     command="SetShowBestClusts"
+                     number_of_elements="1"
+                     default_values="0">
+    <BooleanDomain name="bool"/>
+      </IntVectorProperty>
+    <IntVectorProperty name="ExportClassifyInfo"
+                     command="SetExportClassifyInfo"
+                     number_of_elements="1"
+                     default_values="0">
+    <BooleanDomain name="bool"/>
+  </IntVectorProperty>
+      <IntVectorProperty name="Show Type"
+										 command="SetShowType"
+										 number_of_elements="1"
+										 default_values="1">
+			<EnumerationDomain name="enum">
+				<Entry value="1" text="All Cluster"/>
+				<Entry value="2" text="Some Cluster"/>
+				<Entry value="3" text="Some Center"/>
+				<Entry value="4" text="Some Bundle"/>
+			</EnumerationDomain>
+	</IntVectorProperty>
+    <IntVectorProperty name="MinNumOfCluster"
+                				command="SetMinNum"
+                        number_of_elements="1"
+                        default_values="10">
+    <IntRangeDomain name="range" min="1" max="1000" />
+  </IntVectorProperty>
+    <IntVectorProperty name="MaxNumOfCluster"
+                				command="SetMaxNum"
+                        number_of_elements="1"
+                        default_values="10">
+    <IntRangeDomain name="range" min="1" max="1000" />
+  </IntVectorProperty>
+
+  <!--
+Drop down list
+This creates a drop down list with 3 choices. The values associated with the choices are specified.-->
+         
+    </SourceProxy>
+  </ProxyGroup>
+</ServerManagerConfiguration>
